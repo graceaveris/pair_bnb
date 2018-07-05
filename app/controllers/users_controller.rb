@@ -27,4 +27,5 @@ class UsersController < Clearance::UsersController
       user.birthday = birthday
     end
   end
+ 
 end
