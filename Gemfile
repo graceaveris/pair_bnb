@@ -3,6 +3,13 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.5.0'
 
+#omniauth for google verification
+gem "omniauth"
+gem "omniauth-google-oauth2"
+#Figaro protects your keys from the outsode world! So you dont push them to github...
+gem "figaro"
+# This sets up our user system
+gem "clearance"
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.0'
 # Use sqlite3 as the database for Active Record
