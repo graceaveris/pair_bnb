@@ -1,5 +1,6 @@
 class UsersController < Clearance::UsersController
-	def create
+	#DO NOT TOUCH
+  def create
 		 @user = user_from_params
 
 	    if @user.save
@@ -10,6 +11,16 @@ class UsersController < Clearance::UsersController
 	    end
 	end
 
+
+#BELOW HERE PUT YOUR METHODS
+  def show
+    @user = User.find(params[:id])
+    @listings = @user.listings
+    
+  end
+
+
+#PRIVATE METHOD
 	private
 
 	def user_from_params
@@ -27,5 +38,4 @@ class UsersController < Clearance::UsersController
       user.birthday = birthday
     end
   end
- 
 end

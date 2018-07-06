@@ -3,9 +3,11 @@
   <% @listings.each do |listing| %>
     <tr>
       <td><%= listing.property_name %></td></br>
-      <td><%= listing.property_description %></td></br>
       <td><%= listing.country %></td></br>
       <td><%= listing.city %></td></br>
-      <td><%= listing.price %></td></br>
+      <td>$<%= listing.price %></td>
+  </br>
+      <td><%= link_to 'View Listing', listing_path(listing) %></td></br></br>
     </tr>
   <% end %>
+

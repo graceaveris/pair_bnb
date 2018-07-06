@@ -1,0 +1,16 @@
+<h2><%= "Welcome, #{@user.first_name}" %></h2>
+
+<h3>Your Current Listings:</h3>
+
+ 
+  <% @listings.each do |listing| %>
+
+      <p><%= listing.property_name %></p>
+      <%= link_to 'View Your Listing', listing_path(listing) %></td>
+
+  <% end %>
+
+
+<h3>Post a new Listing:</h3>
+
+<p>~ Link to it here! ~</p>

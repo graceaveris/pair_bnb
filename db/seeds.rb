@@ -7,6 +7,6 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 #LISTING SEED
-listing = Listing.create(property_name: 'Sunny beach house', property_description: 'a nice house situated upon the beach, with three spacious bedrooms and a sunny patio', max_guest_number: 6, country: 'Spain', city: 'Barcelona', price: 85, user_id: 1)
-
+user = User.create(first_name: 'Wolfgang', last_name: 'Bergdorf', email: 'wolfgangbergdorf@gmail.com', password: 'wolfgangrules', confirmation_token: '4567', remember_token: '8912')
+listing = Listing.create(property_name: 'Black Forest Castle', property_description: 'Grand castle deep in the Black Forest. 6 bedrooms, all with fireplaces, drawbridge entrance and two pet bears." ', max_guest_number: 12, country: 'Germany', city: 'Swartzwald', price: 280, user_id: 7)
 # Seed Listings
