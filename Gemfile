@@ -3,6 +3,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.5.0'
 
+gem "country_select"
 #omniauth for google verification
 gem "omniauth"
 gem "omniauth-google-oauth2"

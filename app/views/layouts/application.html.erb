@@ -6,11 +6,17 @@
 </head>
 <body>
   <div id="header">
+<!--     FOR SIGNED IN USERS -->
     <% if signed_in? -%>
+      <%= link_to 'Home', root_path %></td>
+      <%= link_to 'Your Account', user_path(current_user) %></td>
       <%= button_to t(".sign_out"), sign_out_path, method: :delete %>
+    
+<!--     FOR SIGNED IN USERS -->
     <% else -%>
+      <%= link_to 'Home', root_path %></td>
       <%= link_to t(".sign_in"), sign_in_path %>
-      <%= link_to "Sign in with Google", "/auth/google_oauth2" %>
+      <%= link_to t(".sign_up"), sign_up_path %>
     <% end -%>
   </div>
 

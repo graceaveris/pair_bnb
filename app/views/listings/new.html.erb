@@ -1,0 +1,31 @@
+<h1>Add your listing:</h1>
+
+
+<%= form_with scope: :listings, url: listings_path, local: true do |form| %>
+    <p>
+      <%= form.label :property_name %><br>
+  	  <%= form.text_field :property_name %>
+  	</p>
+  	<p>
+  	  <%= form.label :property_description %><br>
+	  <%= form.text_field :property_description %>
+	</p>
+	  <%= form.label :maximum_guests %><br>
+	  <%= form.select :max_guest_number, (0..20) %>
+	</p>
+	 <%= form.label :select_country %><br>
+     <%= form.country_select :country %>
+	<p>
+  	  <%= form.label :city %><br>
+	  <%= form.text_field :city %>
+	</p>
+	<p>
+	    <%= form.label :price_per_night %><br>
+		<%= form.number_field :price %>
+	</p>
+	<p>
+	  <%= form.submit %>
+	</p>
+
+<% end %>
+
