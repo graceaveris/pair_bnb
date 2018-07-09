@@ -3,6 +3,9 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.5.0'
 
+#allows pagination
+gem 'will_paginate', '~> 3.1.1'
+#allows drop down country selection for forms
 gem "country_select"
 #omniauth for google verification
 gem "omniauth"

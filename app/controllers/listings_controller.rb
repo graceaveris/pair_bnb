@@ -1,7 +1,9 @@
 class ListingsController < ApplicationController
 
 	def index
-		@listings = Listing.all
+		# @listings = Listing.all // OLD CODE
+		@listings = Listing.paginate(:page => params[:page], :per_page => 5)
+	    #HOW TO MAKE TEH NEXT PAGE SHOW UP!
 	end
 
     def show
