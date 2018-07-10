@@ -25,10 +25,17 @@ Rails.application.routes.draw do
   
   
   #LISTINGS ROUTES
+  
+  delete "/listings/:id/destroy" => "listings#destroy", as: "destroy_listing"
+
   get "/listings" => "listings#index"
   get "/listings/new" => "listings#new"
   get "/listings/:id" => "listings#show", as: "listing"
 
   post "/listings" => "listings#create"
+
+  get "/listings/:id/edit" => "listings#edit", as: "edit_listing"
+
+  put "listings/:id" => "listings#update"
 
 end

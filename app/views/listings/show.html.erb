@@ -2,9 +2,13 @@
 <h1><%= @listing.property_name %></h1>
 
  <tr>
-      <td><%= @listing.property_description %></td></br>
-      <td><%= @listing.max_guest_number %></td></br>
+      <td>Description: <%= @listing.property_description %></td></br>
+      <td>Capacity: <%= @listing.max_guest_number %> pax</td></br></br>
+      <td>Price Per Night: $<%= @listing.price %></td></br></br>
       <td><%= @listing.country %></td></br>
-      <td><%= @listing.city %></td></br>
-      <td>$<%= @listing.price %></td>
+      <td><%= @listing.city %></td></br></br>
  </tr>
+
+<%= link_to ("Edit Listing"), edit_listing_path %>
+<!-- By default links are GET methods! You must declare. -->
+<%= link_to ("Delete Listing"), destroy_listing_path, method: :delete %>

@@ -1,0 +1,36 @@
+
+
+<h1>Update your listing:</h1>
+
+<h3><%= @listing.property_name %></h3>
+<p><%="Location: #{@listing.city}, #{@listing.country}"%></p>
+<p><%="Name: #{@listing.property_name}"%></p>
+<p><%="Description: #{@listing.property_description}"%></p>
+<p><%="Max Guests: #{@listing.max_guest_number}"%></p>
+<p><%="Price Per Night: $#{@listing.price}"%></p><br>
+
+
+<h3>Enter new details:</h3>
+
+
+<%= form_with scope: :listings, url: listing_path(@listing), method: :put do |form| %>
+    <p>
+      <%= form.label :update_name %><br>
+  	  <%= form.text_field :property_name %>
+  	</p>
+  	<p>
+  	  <%= form.label :update_description %><br>
+	  <%= form.text_field :property_description %>
+	</p>
+	  <%= form.label :Update_max_guests %><br>
+	  <%= form.select :max_guest_number, (0..20) %>
+	</p>
+	<p>
+	  <%= form.label :Update_price_per_night %><br>
+	  <%= form.number_field :price %>
+	</p>
+	<p>
+	  <%= form.submit %>
+	</p>
+
+<% end %>

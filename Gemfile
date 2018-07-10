@@ -3,6 +3,10 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.5.0'
 
+#gem for image versions
+gem "mini_magick"
+#for photo upload
+gem 'carrierwave', '~> 1.0'
 #allows pagination
 gem 'will_paginate', '~> 3.1.1'
 #allows drop down country selection for forms
@@ -19,6 +23,8 @@ gem 'rails', '~> 5.2.0'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 # Use Puma as the app server
+gem 'pg'
+# Use postgres as the database for Active Record
 gem 'puma', '~> 3.11'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
