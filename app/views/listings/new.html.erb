@@ -23,6 +23,10 @@
 	    <%= form.label :price_per_night %><br>
 		<%= form.number_field :price %>
 	</p>
+    <p>
+	    <%= form.label :upload_images %><br>
+	    <%= form.file_field :images, multiple: true %>
+	</p>
 	<p>
 	  <%= form.submit %>
 	</p>

@@ -8,6 +8,12 @@
       <td><%= @listing.country %></td></br>
       <td><%= @listing.city %></td></br></br>
  </tr>
+ 
+
+ <!-- Uploaded image display. -->
+  <% @listing.images.each do |image| %>
+      <%= image_tag image.url(:medium) %>
+  <% end %>
 
 <%= link_to ("Edit Listing"), edit_listing_path %>
 <!-- By default links are GET methods! You must declare. -->

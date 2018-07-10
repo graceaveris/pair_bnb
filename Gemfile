@@ -2,11 +2,20 @@ source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.5.0'
-
+#for front end
+gem 'bootstrap'
+#supports bootstrap
+gem 'jquery-rails'
+#for image cloud storage
+gem 'fog-aws'
 #gem for image versions
 gem "mini_magick"
 #for photo upload
 gem 'carrierwave', '~> 1.0'
+#do do eih cloud storage
+gem 'carrierwave-aws'
+#to do with cloud image storage
+gem 'aws-sdk-rails'
 #allows pagination
 gem 'will_paginate', '~> 3.1.1'
 #allows drop down country selection for forms

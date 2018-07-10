@@ -18,7 +18,7 @@ class ListingsController < ApplicationController
     def create
     	@listing = Listing.new(listing_params)
     	@listing.user_id = current_user.id
-
+    	
        if @listing.save
 		  redirect_to @listing
 	   else
@@ -48,12 +48,12 @@ class ListingsController < ApplicationController
 	#THIS IS THE PRIVATE METHOD, THAT ALLOWS US TO VERIF FIELDS SO HACKERS CAN EMULATE OUR FORMS AND PASS IN CORRUPTIVE DATA
 	private
 	def listing_params
-		params.require(:listings).permit(:property_name, :property_description, :max_guest_number, :country, :city, :price) 
+		params.require(:listings).permit(:property_name, :property_description, :max_guest_number, :country, :city, :price, {images: []}) 
 	end
     
     #THIS DECLARES THE ITEMS THAT CAN BE 'UPDATED'. 
 	def update_params
-		params.require(:listings).permit(:property_description, :property_name, :max_guest_number, :price)
+		params.require(:listings).permit(:property_description, :property_name, :max_guest_number, :price, {images: []})
 	end
 end
 

@@ -1,7 +1,9 @@
 class User < ApplicationRecord
-  include Clearance::User#DO I LEAVE THIS HERE? ITS NOT IN THE DOCUMENTATION
+  include Clearance::User #DO I LEAVE THIS HERE? ITS NOT IN THE DOCUMENTATION
+  
   has_many :authentications, dependent: :destroy
-  has_many :listings #HAVE I ADDED THIS IN THE RIGHT PLACE?
+  has_many :listings, dependent: :destroy#HAVE I ADDED THIS IN THE RIGHT PLACE?
+
   mount_uploader :avatar, AvatarUploader
 
  def self.create_with_auth_and_hash(authentication, auth_hash)
@@ -21,4 +23,5 @@ class User < ApplicationRecord
    x = self.authentications.find_by(provider: 'google_oauth2')
    return x.token unless x.nil?
  end
+
 end
