@@ -2,6 +2,9 @@ source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.5.0'
+
+#for checking date overlaps
+gem 'validates_overlap'
 #for front end
 gem 'bootstrap'
 #supports bootstrap

@@ -6,17 +6,20 @@ class ReservationsController < ApplicationController
 
   
     def create
-  	      @reservation = Reservation.new(reservation_params)
+  	    @reservation = Reservation.new(reservation_params)
     	  @reservation.user_id = current_user.id
-      	  @reservation.listing_id = (params[:listing_id])
-    	
-         if @reservation.save
+      	@reservation.listing_id = (params[:listing_id])
+    	  @listing = Listing.find(params[:listing_id])
+
+        if @reservation.save
 	  	  redirect_to "/users/#{current_user.id}"
 	     else
+      flash[:notice] = "Not available on those dates"
 		  render 'new'
       end
      end
-  
+    
+     
 
      def show
   	   @reservation = Reservation.find(params[:id])
@@ -46,3 +49,5 @@ class ReservationsController < ApplicationController
 	# end
 
 end
+
+
