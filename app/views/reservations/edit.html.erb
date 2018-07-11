@@ -1,0 +1,19 @@
+
+
+<h3>Change Booking Dates:</h3>
+
+
+<%= form_with scope: :listings, url: reservation_path(@reservation), method: :put do |form| %>
+    <p>
+      <%= form.label :start_date %><br>
+  	  <%= form.date_field :start_date%>
+  	</p>
+  	<p>
+      <%= form.label :end_date %><br>
+  	  <%= form.date_field :end_date%>
+  	</p>
+    
+    <p>
+	  <%= form.submit "Change Reservation" %>
+	</p>
+<% end %>

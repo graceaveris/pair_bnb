@@ -10,15 +10,35 @@
  </tr>
  
 
+
  <!-- Uploaded image display. -->
   <% @listing.images.each do |image| %>
       <%= image_tag image.url(:medium) %>
   <% end %>
-
+</br>
 <%= link_to ("Edit Listing"), edit_listing_path %>
 <!-- By default links are GET methods! You must declare. -->
 <%= link_to ("Delete Listing"), destroy_listing_path, method: :delete %>
 
+<%= link_to ("Make a Reservation"), new_listing_reservation_path(@listing.id) %></br></br>
+
+
+ <!-- AREA FOR RESERVATION DETAILS / NEED TO BUILD AUTHORIZATION -->
+
+<h3>Current Bookings:</h3>
+
+  
+  <% @listing.reservations.each do |reservation| %>
+  
+    <tr>
+      <td>Guest Name: <%= reservation.user.first_name %></td></br>
+      <td>Start Date: <%= reservation.start_date %></td></br>
+      <td>End Date: <%= reservation.start_date %></td></br>
+
+  <% end %>
+
+<p>______________________</p>
+</br></br></br>
 
  <!-- BOOTSTRAP CAROUSEL / IN PROGRESS -->
 

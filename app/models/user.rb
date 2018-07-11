@@ -2,7 +2,8 @@ class User < ApplicationRecord
   include Clearance::User #DO I LEAVE THIS HERE? ITS NOT IN THE DOCUMENTATION
   
   has_many :authentications, dependent: :destroy
-  has_many :listings, dependent: :destroy#HAVE I ADDED THIS IN THE RIGHT PLACE?
+  has_many :listings, dependent: :destroy
+  has_many :reservations, dependent: :destroy
 
   mount_uploader :avatar, AvatarUploader
 

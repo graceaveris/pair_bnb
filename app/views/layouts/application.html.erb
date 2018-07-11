@@ -18,8 +18,13 @@
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   
+
+<!-- NAV LOGO -->
   <a class="navbar-brand">
-    <%= link_to 'Home', root_path %>
+    <%= link_to image_tag("/images/logo.png"), root_path, class: 'nav-item nav-link active' %></a>
+<!-- NAV LOGO -->
+
+
   </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -28,8 +33,9 @@
     <ul class="navbar-nav">
          <li class="nav-item active">
      </li>
-    <% if signed_in? %>
 
+    <% if signed_in? %>
+                   
 
                   <li class="nav-item">
                     <%= link_to 'Your Account', user_path(current_user), class: 'nav-item nav-link active' %>
@@ -37,15 +43,20 @@
                   <li class="nav-item">
                       <%= link_to 'Sign Out', sign_out_path, class: 'nav-item nav-link active', method: :delete %>
                   </li>
-      
+
+      <!-- LOGO ADDED TO NAV -->
+
+
+      <!-- ATTEMPT TO ADD IMAGE -->
 
         <% else %>
 
-                      <li class="nav-item">
+                  <li class="nav-item">
                     <%= link_to t(".sign_in"), sign_in_path, class: 'nav-item nav-link active' %>
                   </li>
+                  
                   <li class="nav-item">
-                       <%= link_to t(".sign_up"), sign_up_path, class: 'nav-item nav-link active' %>
+                      <%= link_to t(".sign_up"), sign_up_path, class: 'nav-item nav-link active' %>
                   </li>
 
 

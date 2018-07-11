@@ -1,17 +1,31 @@
 <h2><%= "Welcome, #{@user.first_name}" %></h2>
   <%= image_tag @user.avatar.url(:thumb) %>
 
+
+
 <h3>Your Current Listings:</h3>
 
  
   <% @listings.each do |listing| %>
 
       <p><%= listing.property_name %></p>
-      <%= link_to 'View Your Listing', listing_path(listing) %></td>
+      <%= link_to 'View Your Listing', listing_path(listing) %></td></br></br>
 
   <% end %>
 
 
+
+
 <h3>Post a new Listing:</h3>
 
-<%= link_to 'List a new property', "/listings/new" %></td>
+<%= link_to 'List a new property', "/listings/new" %></td></br></br>
+
+<h3>Your Reservations:</h3>
+
+ 
+  <% @user.reservations.each do |reservation| %>
+      <p><%= reservation.listing.property_name %></p>
+      <p><%= reservation.start_date %></p>
+      <%= link_to 'View Booking', reservation_path(reservation) %></td>
+
+  <% end %>

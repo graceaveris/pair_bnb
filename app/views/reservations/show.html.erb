@@ -1,0 +1,16 @@
+
+
+<!--  TAILOR -->
+<h3><%=" Your booking for: #{@reservation.listing.property_name} "%></h3></br>
+
+ <tr>
+      <td>From: <%= @reservation.start_date  %></td></br>
+      <td>Until: <%= @reservation.end_date  %></td></br>
+      <td>Capacity: <%= @reservation.listing.max_guest_number %> pax</td></br>
+      <td>Price Per Night: $<%= @reservation.listing.price %></td></br>
+      <td>Contry: <%= @reservation.listing.country %></td></br>
+      <td>City: <%= @reservation.listing.city %></td></br>
+ </tr></br>
+
+ <%= link_to ("Delete Booking"), destroy_reservation_path, method: :delete %>
+

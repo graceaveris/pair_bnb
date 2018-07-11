@@ -8,11 +8,11 @@ class ListingsController < ApplicationController
 
     def show
     	@listing = Listing.find(params[:id])
+
     end
 
     def new
     	@user = current_user
-    	# @listing = Listing.new
     end
 
     def create
