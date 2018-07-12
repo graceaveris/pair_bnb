@@ -1,7 +1,13 @@
 
 
 <!--  TAILOR -->
-<h3><%=" Your booking for: #{@reservation.listing.property_name} "%></h3></br>
+<!-- FLASH MESSAGE GENERATOR - IF THEIR DATE PICK FAILS -->
+  <% if flash[:notice] %>
+    <div class="notice"><%= flash[:notice] %></div>
+  <% end %></br>
+
+  
+<h3><%=" Your booking details for: #{@reservation.listing.property_name} "%></h3></br>
 
  <tr>
       <td>From: <%= @reservation.start_date  %></td></br>
@@ -12,5 +18,6 @@
       <td>City: <%= @reservation.listing.city %></td></br>
  </tr></br>
 
+ <%= link_to ("View Property Details"), listing_path(@reservation.listing) %></br>
  <%= link_to ("Delete Booking"), destroy_reservation_path, method: :delete %>
 

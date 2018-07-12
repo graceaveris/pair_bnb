@@ -5,18 +5,21 @@ class ReservationsController < ApplicationController
     end
 
   
-    def create
-  	    @reservation = Reservation.new(reservation_params)
+    def create  	   
+
+        @reservation = Reservation.new(reservation_params)
     	  @reservation.user_id = current_user.id
       	@reservation.listing_id = (params[:listing_id])
     	  @listing = Listing.find(params[:listing_id])
+        
 
         if @reservation.save
-	  	  redirect_to "/users/#{current_user.id}"
-	     else
-      flash[:notice] = "Not available on those dates"
-		  render 'new'
-      end
+  	  	  redirect_to "/reservations/#{@reservation.id}/payments/new"
+  	     else
+          flash[:notice] = "Not available on those dates"
+    		  render 'new'
+        end
+
      end
     
      

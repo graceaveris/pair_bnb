@@ -1,31 +1,33 @@
  
 <h1><%= @listing.property_name %></h1>
 
+<!-- PROPERTY DESCRIPTION BLOCK / FOR CUSTOMERS -->
+
  <tr>
       <td>Description: <%= @listing.property_description %></td></br>
-      <td>Capacity: <%= @listing.max_guest_number %> pax</td></br></br>
+      <td>Capacity: <%= @listing.max_guest_number %> pax</td></br>
+    <td>Location: <%="#{@listing.city}, #{@listing.country} "%></td></br></br>
       <td>Price Per Night: $<%= @listing.price %></td></br></br>
-      <td><%= @listing.country %></td></br>
-      <td><%= @listing.city %></td></br></br>
  </tr>
  
+ <%= button_to ("Book Now "), new_listing_reservation_path(@listing.id), method: :get %></br></br>
 
 
  <!-- Uploaded image display. -->
   <% @listing.images.each do |image| %>
       <%= image_tag image.url(:medium) %>
-  <% end %>
-</br>
-<%= link_to ("Edit Listing"), edit_listing_path %>
-<!-- By default links are GET methods! You must declare. -->
-<%= link_to ("Delete Listing"), destroy_listing_path, method: :delete %>
-
-<%= link_to ("Make a Reservation"), new_listing_reservation_path(@listing.id) %></br></br>
+  <% end %></br>
 
 
- <!-- AREA FOR RESERVATION DETAILS / NEED TO BUILD AUTHORIZATION -->
 
-<h3>Current Bookings:</h3>
+
+
+
+<!-- RESERVATION DETAILS / FOR LANDLORDS-->
+
+<%= link_to ("Edit Listing   "), edit_listing_path %></br></br>
+
+<h3>Reservations for this property:</h3></br>
 
   
   <% @listing.reservations.each do |reservation| %>
@@ -33,7 +35,7 @@
     <tr>
       <td>Guest Name: <%= reservation.user.first_name %></td></br>
       <td>Start Date: <%= reservation.start_date %></td></br>
-      <td>End Date: <%= reservation.end_date %></td></br>
+      <td>End Date: <%= reservation.end_date %></td></br></br>
 
   <% end %>
 
@@ -64,3 +66,4 @@
     <span class="sr-only">Next</span>
   </a>
 </div>
+

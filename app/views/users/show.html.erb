@@ -1,31 +1,31 @@
-<h2><%= "Welcome, #{@user.first_name}" %></h2>
-  <%= image_tag @user.avatar.url(:thumb) %>
+<h1><%= "Welcome, #{@user.first_name}" %></h1>
+  <img class="avatar"><%= image_tag @user.avatar.url(:thumb) %></img></br></br>
 
 
-
-<h3>Your Current Listings:</h3>
-
- 
+<!-- BLOCK DISPLAYS USER LISTED PROPERTIES -->
+<h3>Your Listed Properties:</h3>
+  
   <% @listings.each do |listing| %>
 
-      <p><%= listing.property_name %></p>
-      <%= link_to 'View Your Listing', listing_path(listing) %></td></br></br>
+  <%= link_to listing.property_name, listing_path(listing) %></br>
 
-  <% end %>
-
-
+  <% end %></br>
+<%= button_to 'List a new property', "/listings/new", method: :get %></td></br></br>
 
 
-<h3>Post a new Listing:</h3>
+<!-- BLOCK DISPLAYS USER PERSONAL RESERVATIONS -->
+<h3>Your Reservations:</h3></br>
 
-<%= link_to 'List a new property', "/listings/new" %></td></br></br>
 
-<h3>Your Reservations:</h3>
+    <% @user.reservations.each do |reservation| %>
+     <tr>
+        <td>Name: <%= reservation.listing.property_name %></td></br>
+        <td>Location: <%= "#{reservation.listing.city}, #{reservation.listing.country} "%></td></br>
+        <td>From: <%= reservation.start_date %></td></br>
+        <td>To: <%= reservation.end_date %></td></br>
+        <td><%= link_to 'View Booking', reservation_path(reservation) %></td></br></br>
+      <tr>
 
- 
-  <% @user.reservations.each do |reservation| %>
-      <p><%= reservation.listing.property_name %></p>
-      <p><%= reservation.start_date %></p>
-      <%= link_to 'View Booking', reservation_path(reservation) %></td>
+  else
 
   <% end %>

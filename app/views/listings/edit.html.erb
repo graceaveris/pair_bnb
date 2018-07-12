@@ -1,14 +1,15 @@
 
 
-<h1>Update your listing:</h1>
+<h1><%= @listing.property_name %></h1>
+<h3>Current Details:</h3>
 
-<h3><%= @listing.property_name %></h3>
-<p><%="Location: #{@listing.city}, #{@listing.country}"%></p>
-<p><%="Name: #{@listing.property_name}"%></p>
-<p><%="Description: #{@listing.property_description}"%></p>
-<p><%="Max Guests: #{@listing.max_guest_number}"%></p>
-<p><%="Price Per Night: $#{@listing.price}"%></p><br>
-
+<tr>
+    <td><%="Name: #{@listing.property_name}"%></td><br>
+    <td><%="Description: #{@listing.property_description}" %></td><br>
+    <td><%="Location: #{@listing.city}, #{@listing.country}"%></td><br>
+	<td><%="Max Guests: #{@listing.max_guest_number}" %></td><br><br>
+	<td><b><%="Price Per Night: $#{@listing.price}" %></b></td><br><br><br>
+<tr>
 
 <h3>Enter new details:</h3>
 
@@ -16,21 +17,24 @@
 <%= form_with scope: :listings, url: listing_path(@listing), method: :put do |form| %>
     <p>
       <%= form.label :update_name %><br>
-  	  <%= form.text_field :property_name %>
+  	  <%= form.text_field :property_name, value: "#{@listing.property_name}" %>
   	</p>
   	<p>
   	  <%= form.label :update_description %><br>
-	  <%= form.text_field :property_description %>
+	  <%= form.text_field :property_description, value: "#{@listing.property_description}" %>
 	</p>
 	  <%= form.label :Update_max_guests %><br>
-	  <%= form.select :max_guest_number, (0..20) %>
+	  <%= form.select :max_guest_number, (0..20), defaultValue: "#{@listing.max_guest_number}" %>
 	</p>
 	<p>
 	  <%= form.label :Update_price_per_night %><br>
-	  <%= form.number_field :price %>
+	  <%= form.number_field :price, value: "#{@listing.price}" %>
 	</p>
 	<p>
-	  <%= form.submit %>
+	  <%= form.submit "Update Listing" %><br>
 	</p>
 
+
 <% end %>
+
+<%= button_to ("Delete Listing"), destroy_listing_path, method: :delete %></br></br>

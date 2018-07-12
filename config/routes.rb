@@ -26,6 +26,8 @@ Rails.application.routes.draw do
   
   #LISTINGS ROUTES
   
+  put "listings/:id" => "listings#update" #This updates the listing based on the id param
+
   delete "/listings/:id/destroy" => "listings#destroy", as: "destroy_listing"
 
   get "/listings" => "listings#index" #This show an index of current listings
@@ -36,7 +38,7 @@ Rails.application.routes.draw do
 
   get "/listings/:id/edit" => "listings#edit", as: "edit_listing" #This serves the edit form for a listing
 
-  put "listings/:id" => "listings#update" #This updates the listing based on the id param
+
 
 
 #RESERVATIONS ROUTES
@@ -48,7 +50,7 @@ end
 
   get "/reservations/:id" => "reservations#show", as: "reservation" #This shows a reservation based on id param
 
-  get "/reservations/:id/edit" => "reservations#edit", as: "edit_reservation" #This serves the edit form for a listing
+  get "/reservations/:id/edit" => "reservations#edit", as: "edit_reservation" #This serves the edit form for a reservation
 
    
   delete "/reservations/:id/destroy" => "reservations#destroy", as: "destroy_reservation"
@@ -59,8 +61,13 @@ end
 #                       POST   /listings/:listing_id/reservations(.:format)     reservations#create
 # new_listing_reservation GET    /listings/:listing_id/reservations/new(.:format)     reservations#new
 
+#PAYMENTS ROUTES
 
+  # get 'payments/:id/new' => "payments#new", as: "new_payment"
+  get '/reservations/:id/payments/new' => "payments#new", as: "new_payment"
 
+  # post 'payments/checkout'
+  post '/reservations/:id/payments/checkout' => "payments#checkout", as: "checkout"
 end
 
 

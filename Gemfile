@@ -3,6 +3,8 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.5.0'
 
+#for payments
+gem 'braintree'
 #for checking date overlaps
 gem 'validates_overlap'
 #for front end
