@@ -30,9 +30,11 @@ class PaymentsController < ApplicationController
 	  )
 
 	  if result.success?
+	  	@reservation.update(:payment_status => true)
 	    redirect_to reservation_path(params[:id])
 	    flash[:notice] = "Transaction successful!"
 	  else
+	  	
 	    redirect_to new_payment_path(params[:id])
 	    flash[:notice] = "Transaction failed. Please try again."
 	  end
