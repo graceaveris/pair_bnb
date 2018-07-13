@@ -4,6 +4,11 @@ class UsersController < Clearance::UsersController
 		 @user = user_from_params
 
 	    if @user.save
+        
+        #THIS SENDS THE WELCOME MAILER TO THE USER, AND DEFIES THE URL ADDRESS
+        @url = "http://example.com/"
+        UserMailer.welcome_email(@user).deliver_now
+
 	      sign_in @user
 	      redirect_back_or url_after_create
 	    else
