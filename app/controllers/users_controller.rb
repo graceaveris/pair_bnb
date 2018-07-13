@@ -5,7 +5,7 @@ class UsersController < Clearance::UsersController
 
 	    if @user.save
         
-#THIS SENDS THE WELCOME MAILER TO THE USER, AND DEFIES THE URL ADDRESS
+  #THIS SENDS THE WELCOME MAILER TO THE USER, AND DEFIES THE URL ADDRESS
         @url = "http://example.com/"
        
    #this line is the code that sends the email via background jobs. 

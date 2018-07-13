@@ -1,3 +1,4 @@
+
 class ReservationsController < ApplicationController
 
     def new
@@ -12,8 +13,11 @@ class ReservationsController < ApplicationController
       	@reservation.listing_id = (params[:listing_id])
     	  @listing = Listing.find(params[:listing_id])
         
+  
 
         if @reservation.save
+#THE METHOD BELOW DELETES THE RESERVATION AFTER TEN MINUTES IF IT IS NOT PAID
+          DeleteUnpaidBookingJob.set(wait: 10.minutes).perform_later(@reservation)
   	  	  redirect_to "/reservations/#{@reservation.id}/payments/new"
   	     else
           flash[:notice] = "Not available on those dates"
@@ -21,17 +25,11 @@ class ReservationsController < ApplicationController
         end
 
      end
-    
-     
 
      def show
   	   @reservation = Reservation.find(params[:id])
     end
 
-    #NOT CURRENTLY IN USE
-  	def edit
-       @reservation = Reservation.find(params[:id])  
-    end
 
     	
 	def destroy
