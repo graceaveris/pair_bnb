@@ -27,21 +27,27 @@ class PaymentsController < ApplicationController
 	   :amount => @total_price,
 	   :payment_method_nonce => nonce_from_the_client,
 	   :options => {
-	      :submit_for_settlement => true
+	   :submit_for_settlement => true
 	    }
 	  )
 
 	  if result.success?
+#UPDATES PAYMENT STATUS TO TRUE
 	  	@reservation.update(:payment_status => true)
 
 #EMAIL LETS THE PROPERTY OWNER A BOOKING HAS BEEN MADE
-	  	UserMailer.property_reservation_email(@listing).deliver_now
+		# - CURRENTY MOVING TO ACTION JOBS -
+        ReservationNotifierJob.perform_later(@listing)
+
+        #this is what i had before I linked to actiive jobs (which worked). Ths job rus in sequence, and does not connect to the background server.
+	  	# If i want to switch emails back to just being sent in code chain, uncomment the above and reactiviate below.
+	  	# UserMailer.property_reservation_email(@listing).deliver_now
 	    
 
 	    redirect_to reservation_path(params[:id])
 	    flash[:notice] = "Transaction successful!"
 	  else
-#WE NEED TO DO SOMETHIGN TO DELETE THE BOOKING IF THE PAYMENT FAILS!! COME BACK TO THIS
+#WE NEED TO DO SOMETHING TO DELETE THE BOOKING IF THE PAYMENT FAILS!! COME BACK TO THIS
 	    redirect_to new_payment_path(params[:id])
 	    flash[:notice] = "Transaction failed. Please try again."
 	  end
