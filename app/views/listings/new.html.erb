@@ -16,7 +16,7 @@
 	 <%= form.label :select_country %><br>
      <%= form.country_select :country %>
 	<p>
-  	  <%= form.label :city %><br>
+  	  <%= form.label :city %><br> 
 	  <%= form.text_field :city %>
 	</p>
 	<p>
@@ -26,12 +26,19 @@
     <p>
 	    <%= form.label :upload_images %><br>
 	    <%= form.file_field :images, multiple: true %>
-	</p>
+	</p></br>
 	<p>
-	  <%= form.submit %>
+	<%= form.label :select_amenities %><br>
+		<%@amenities.each do |amen|%>
+		    <%= form.label amen %>
+			<%= form.check_box :amenities, {multiple: true}, amen.to_s, nil %></br>
+			</p>		
+		<% end %>
+	<p>
+	  <%= form.submit "Save Listing" %>
 	</p>
 
-<% end %>
+<% end %> 
 
 
 
