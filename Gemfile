@@ -27,6 +27,8 @@ gem 'aws-sdk-rails'
 #allows pagination
 gem 'will_paginate', '~> 3.1.1'
 #allows drop down country selection for forms
+gem "countries"
+#supports country select
 gem "country_select"
 #omniauth for google verification
 gem "omniauth"
