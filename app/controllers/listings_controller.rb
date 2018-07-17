@@ -1,7 +1,7 @@
 class ListingsController < ApplicationController
+    before_action :require_login, :only => [:new, :create, :edit, :update]
 
 	def index
-		# @listings = Listing.all // OLD CODE
 		@listings = Listing.paginate(:page => params[:page], :per_page => 5)
 	end
 
@@ -12,7 +12,7 @@ class ListingsController < ApplicationController
     def new
     	@user = current_user
     	@amenities = [ "Free Bananas Provided", "Washing Machine", "Balcony", "Toiletries", "Tea & Coffee", "Hairdryer", "Wifi", "Laptop Friendly Workspace", "Hot Tub", "Sauna", "Swimming Pool"]
-
+        
     end
 
     def create
@@ -76,4 +76,13 @@ class ListingsController < ApplicationController
 	def update_params
 		params.require(:listings).permit(:property_description, :property_name, :max_guest_number, :price, {images: []}, {amenities: []})
 	end
+
+
+  def require_login
+    unless signed_in?
+      flash[:notice] = "Sign up or Login to access this feature"
+      redirect_to sign_up_path # halts request cycle
+    end
+  end
+
 end

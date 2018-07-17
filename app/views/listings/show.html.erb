@@ -1,17 +1,42 @@
  
+<% if current_user == @listing.user %>
+   <p>Your property listing:</p>
+  <% else %>
+<% end %>
+
 <h1><%= @listing.property_name %></h1>
 
 <!-- PROPERTY DESCRIPTION BLOCK / FOR CUSTOMERS -->
-
- <tr>
+<tr>
       <td>Description: <%= @listing.property_description %></td></br>
       <td>Capacity: <%= @listing.max_guest_number %> pax</td></br>
-    <td>Location: <%="#{@listing.city}, #{@listing.country} "%></td></br></br>
-      <td>Price Per Night: $<%= @listing.price %></td></br></br>
- </tr>
- 
- <%= button_to ("Book Now "), new_listing_reservation_path(@listing.id), method: :get %></br></br>
+    <td>Location: <%="#{@listing.city}, #{@listing.country} "%></td></br>
 
+
+    <% if current_user != @listing.user %>
+      <td>Hosted By: <%= @listing.user.first_name %></td></br></br>
+    <% else %>
+<% end %>
+
+      <td>Price Per Night: $<%= @listing.price %></td></br></br>
+      
+ 
+ </tr>
+    <% @listing.amenities.each do |amen| %>
+    <p><%= amen %>  ✔ </p> 
+ <% end %></br>
+
+
+
+<!-- BOOK NOW BUTTON / DOES NOT SHOW FOR LISTING.USER -->
+
+     <% if current_user == @listing.user %>
+
+<%= button_to ("Edit Listing "), edit_listing_path, method: :get %></br></br>
+      
+     <% else %>
+<%= button_to ("Book Now "), new_listing_reservation_path(@listing.id), method: :get %></br></br>
+     <% end %>
 
  <!-- Uploaded image display. -->
   <% @listing.images.each do |image| %>
@@ -19,12 +44,11 @@
   <% end %></br>
 
 
-
 <!-- RESERVATION DETAILS / FOR LANDLORDS-->
 
-<%= link_to ("Edit Listing   "), edit_listing_path %></br></br>
+<% if current_user == @listing.user %>
 
-<h3>Reservations for this property:</h3></br>
+<h3>Upcoming reservations for your property:</h3></br>
 
   
   <% @listing.reservations.each do |reservation| %>
@@ -38,6 +62,12 @@
 
 <p>______________________</p>
 </br></br></br>
+   
+<!--    closing block for if/else   -->
+   <% else %>
+<% end %>
+
+
 
  <!-- BOOTSTRAP CAROUSEL / IN PROGRESS -->
 

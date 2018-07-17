@@ -9,8 +9,6 @@
 <body>
 
 
-
-
 <!-- BOTSTRAP NAV -->
 <!-- https://getbootstrap.com/docs/4.0/components/navbar/ -->
 
@@ -19,11 +17,11 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   
 
-<!-- NAV LOGO -->
+<!-- NAV LOGO BRANDING-->
   <a class="navbar-brand">
-    <%= link_to image_tag("/images/logo.png"), root_path, class: 'nav-item nav-link active' %></a>
-<!-- NAV LOGO -->
+    <%= link_to image_tag("/images/logo.png"), root_path, class: "nav-item nav-link active" %></a>
 
+<!-- NAV LINKS -->
 
   </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -34,6 +32,15 @@
          <li class="nav-item active">
      </li>
 
+
+           <li class="nav-item">
+                <%= link_to 'Search Homes', listings_path, class: 'nav-item nav-link active' %>
+            </li>
+            <li class="nav-item">
+                 <%= link_to 'List Property', new_listing_path, class: 'nav-item nav-link active', method: :get %>
+            </li>
+                 
+
     <% if signed_in? %>
                    
 
@@ -43,11 +50,15 @@
                   <li class="nav-item">
                       <%= link_to 'Sign Out', sign_out_path, class: 'nav-item nav-link active', method: :delete %>
                   </li>
+                  </ul>
 
-      <!-- LOGO ADDED TO NAV -->
-
-
-      <!-- ATTEMPT TO ADD IMAGE -->
+      <!-- USER AVATAR ADDED -->
+  
+                  </div>
+                  <div>
+                    <%= image_tag current_user.avatar.url(:thumb), class: "rounded-circle avatar"%>
+                  </div>
+                  </nav>
 
         <% else %>
 
@@ -58,13 +69,16 @@
                   <li class="nav-item">
                       <%= link_to t(".sign_up"), sign_up_path, class: 'nav-item nav-link active' %>
                   </li>
+             </ul>
+           </div>
+         </nav>
 
-
+      
         <% end %>
 
-    </ul>
-  </div>
-</nav>
+  
+  </ul>
+</div>
 
 
 <!-- BOTSTRAP NAV -->

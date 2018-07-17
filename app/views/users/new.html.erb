@@ -1,3 +1,8 @@
+<!-- FLASH MESSAGE GENERATOR - If sent form restricted zone -->
+  <% if flash[:notice] %>
+    <div class="notice"><%= flash[:notice] %></div>
+  <% end %></br>
+
 <div id="clearance" class="sign-up">
   <h2><%= t(".title") %></h2>
 

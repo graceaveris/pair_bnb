@@ -1,21 +1,55 @@
+<!-- ONLY ALLOW USERS OT VIEW THEIR PWN PROFILES -->
+    <% if current_user == @user %>
+
 <h1><%= "Welcome, #{@user.first_name}" %></h1>
-  <img class="avatar"><%= image_tag @user.avatar.url(:thumb) %></img></br></br>
+
+</br></br>
 
 
 <!-- BLOCK DISPLAYS USER LISTED PROPERTIES -->
-<h3>Your Listed Properties:</h3>
+    <!-- displays a prompt to search if no current reservations -->
+    <% if @user.listings == nil %>
+    <p>Have a home to rent?</p>
+    <%= button_to 'List Your Property', new_listing_path, class: "btn btn-secondary", method: :get %></br></br>
+    <% else %>
+
+
+
+<h3>Your Current Listings:</h3>
+
+<div class="card-group">
+
   
   <% @listings.each do |listing| %>
+<!-- BOOTSTRAP CARD -->
+  <div class="card" style="width: 18rem;">
+  <img class="card-img-top" src="<%= listing.images[0] %>" alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title"><%= listing.property_name %></h5>
+    <p class="card-text"><%= "#{listing.city}, #{listing.country} "%></p>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <%= link_to "View Listing", listing_path(listing), class: "btn btn-primary" %>
+  </div>
+</div>
 
-  <%= link_to listing.property_name, listing_path(listing) %></br>
+
 
   <% end %></br>
-<%= button_to 'List a new property', "/listings/new", method: :get %></td></br></br>
+  </div></br>
+<%= button_to 'List a new property', "/listings/new", class: "btn btn-secondary", method: :get %></td></br></br>
 
+<% end %>
 
 <!-- BLOCK DISPLAYS USER PERSONAL RESERVATIONS -->
-<h3>Your Reservations:</h3></br>
+    <!-- displays a prompt to search if no current reservations -->
+    <% if @user.reservations == nil %>
+    <p>Planning a holiday?</p>
+    <%= button_to 'Find Accommodation', listings_path, class: "btn btn-secondary", method: :get %>
+    <% else %>
 
+
+<h3>Your Upcoming Trips:</h3></br>
+  
 
     <% @user.reservations.each do |reservation| %>
      <tr>
@@ -26,6 +60,14 @@
         <td><%= link_to 'View Booking', reservation_path(reservation) %></td></br></br>
       <tr>
 
-  else
-
   <% end %>
+<% end %>
+
+<!-- DISPLAYS MESSAGE IF YOU ARE TRYING TO VIEW ANOTHER USERS USER PAGE-->
+
+<% else %>
+<p>You are not authorised to view this page</p>
+<% end %>
+
+
+

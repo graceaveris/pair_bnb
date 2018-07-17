@@ -1,16 +1,24 @@
-<h1>LISTINGS PAGE</h1>
+<h1>CURRENT LISTINGS</h1>
+
+
+<div class="card-group">
 
   <% @listings.each do |listing| %>
-    <tr>
-      
-      <td><%= listing.property_name %></td></br>
-      <td><%= listing.country %></td></br>
-      <td><%= listing.city %></td></br>
-      <td>$<%= listing.price %></td>
-  </br>
-      <td><%= link_to 'View Listing', listing_path(listing) %></td></br></br>
-    </tr>
-  <% end %>
+<!-- BOOTSTRAP CARD -->
+  <div class="card" style="width: 18rem;">
+  <img class="card-img-top" src="<%= listing.images[0] %>" alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title"><%= listing.property_name %></h5>
+    <p class="card-text"><%= "#{listing.city}, #{listing.country} "%></p>
+    <p class="card-text"><%= listing.property_description %></p>
+    <p class="card-text"><%= "Per Night: $ #{listing.price} "%></p>
+    <%= link_to "View Listing", listing_path(listing), class: "btn btn-primary" %>
+  </div>
+</div>
+
+
+  <% end %></br>
+  </div></br>
+
 
   <%= will_paginate @posts %>
-
