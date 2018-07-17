@@ -34,17 +34,16 @@
 		<p>
 	
 	<%= form.label :edit_amenities %><br>
-		
         <% @current_amenities.each do |amen|%>
 		       
             <%= form.label amen %>
-			<%= form.check_box :amenities, {multiple: true, checked: true}, amen.to_s, amen %>       
+			<%= form.check_box :amenities, {multiple: true, checked: true}, amen.to_s, nil %><br />       
         <% end %>
 
 		<% @amenities.each do |amen|%>
 		       
 	         <%= form.label amen %>
-		     <%= form.check_box :amenities, {multiple: true}, amen.to_s, nil%>
+		     <%= form.check_box :amenities, {multiple: true}, amen.to_s, nil %><br />
                
          <% end %>
 
@@ -53,7 +52,7 @@
 	</p>		
 		
 	<p>
-    <%= form.submit "Update Listing", data: { turbolinks: false } %><br>
+    <%= form.submit "Update Listing" %><br>
 <!-- NOTE ON: data: { turbolinks: false } -With the new form_for, it is an auto ajax form meaning that it will only check and update CHANGES in the form, as opposed to updating the whole thing. This is what what causing my fields to be loaded twice and persist, despite clernig the array each tiem around. READ MORE ABOUT THIS -->
 	</p>
 

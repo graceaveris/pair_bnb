@@ -28,7 +28,8 @@ class ListingsController < ApplicationController
 
 	def update
 		@listing = Listing.find(params[:id])
-   #here I clear the amenities array so that the newly selcted amenities can be places inside.
+
+        # here I clear the amenities array so that the newly selcted amenities can be places inside.
 		@listing.amenities.clear
 		@listing.save
        
@@ -49,7 +50,7 @@ class ListingsController < ApplicationController
         	end
        end	
 
-      
+       p @amenities
 
     end
 	
