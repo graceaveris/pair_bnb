@@ -1,6 +1,30 @@
 <h1>CURRENT LISTINGS</h1>
 
 
+<!-- FORM FOR FILTERING -->
+
+<%= form_with scope: :filter, url: filter_listings_path, local: true do |form| %>
+    <p>
+    <%= form.select :guest_number, (0..20), {:prompt => "Guest Number"} %>
+    <%= form.select(:city, ['Search All', 'London', 'New York', 'Los Angeles'], {:prompt => "Select City"})%>
+    <%= form.label :Minimum_price_per_night%>
+    <%= form.number_field :min_price, :value => 0 %>
+    <%= form.label :Maximum_price_per_night%>
+    <%= form.number_field :max_price, :value => 1000  %>
+
+    <%= form.submit "Filter Results" %>
+  </p>
+<% end %> 
+
+<!-- DISPLAYS CURRENTLY SELECTED FIELDS IF @FILTERED VIEW -->
+
+<% if @filtered == true %>
+<p><%= "Filtering by City: #{@city}, Guest Number: #{@guests} "%></p>
+ <%= link_to "Clear Filters", listings_path, class: "btn btn-primary btn-sm" %><br><br>
+<% end %>  
+
+
+
 <div class="card-group">
 
   <% @listings.each do |listing| %>
@@ -17,8 +41,8 @@
 </div>
 
 
+
   <% end %></br>
   </div></br>
 
-
-  <%= will_paginate @posts %>
+<%= will_paginate @posts %>

@@ -2,8 +2,19 @@ class ListingsController < ApplicationController
     before_action :require_login, :only => [:new, :create, :edit, :update]
 
 	def index
-		@listings = Listing.paginate(:page => params[:page], :per_page => 5)
-	end
+		
+        @listings = Listing.paginate(:page => params[:page], :per_page => 5)
+        @amenities = [ "Free Bananas Provided", "Washing Machine", "Balcony", "Toiletries", "Tea & Coffee", "Hairdryer", "Wifi", "Laptop Friendly Workspace", "Hot Tub", "Sauna", "Swimming Pool"]
+        
+    end
+
+    def filter
+        @listings = Listing.max_guest_scope(params[:filter][:guest_number]).city_scope(params[:filter][:city]).price_range_scope(params[:filter][:min_price], params[:filter][:max_price]).paginate(:page => params[:page], :per_page => 5)
+        @filtered = true
+        @city = params[:filter][:city]
+        @guests = params[:filter][:guest_number]
+        render 'index'
+    end
 
     def show
     	@listing = Listing.find(params[:id])
@@ -12,7 +23,6 @@ class ListingsController < ApplicationController
     def new
     	@user = current_user
     	@amenities = [ "Free Bananas Provided", "Washing Machine", "Balcony", "Toiletries", "Tea & Coffee", "Hairdryer", "Wifi", "Laptop Friendly Workspace", "Hot Tub", "Sauna", "Swimming Pool"]
-        
     end
 
     def create

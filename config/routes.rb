@@ -37,12 +37,11 @@ Rails.application.routes.draw do
   post "/listings" => "listings#create" #This creates the listing upon submit of form
 
   get "/listings/:id/edit" => "listings#edit", as: "edit_listing" #This serves the edit form for a listing
-
-
+  
+  post "/listings/filter" => "listings#filter", as: "filter_listings"#This creates the listing upon submit of form
 
 
 #RESERVATIONS ROUTES
-
   
 resources :listings do
   resources :reservations, only: [:index, :create, :new]
