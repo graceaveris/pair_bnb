@@ -2,8 +2,20 @@ class ListingsController < ApplicationController
     before_action :require_login, :only => [:new, :create, :edit, :update]
 
 	def index
-		@listings = Listing.paginate(:page => params[:page], :per_page => 5)
-	end
+		
+        @listings = Listing.paginate(:page => params[:page], :per_page => 5)
+        @amenities = [ "Free Bananas Provided", "Washing Machine", "Balcony", "Toiletries", "Tea & Coffee", "Hairdryer", "Wifi", "Laptop Friendly Workspace", "Hot Tub", "Sauna", "Swimming Pool"]
+        
+    end
+
+    def filter
+
+        @amenities = [ "Free Bananas Provided", "Washing Machine", "Balcony", "Toiletries", "Tea & Coffee", "Hairdryer", "Wifi", "Laptop Friendly Workspace", "Hot Tub", "Sauna", "Swimming Pool"]
+
+        @listings = Listing.max_guest_scope(params[:filter][:max_guest_number]).paginate(:page => params[:page], :per_page => 5)
+        
+        render 'index'
+    end
 
     def show
     	@listing = Listing.find(params[:id])

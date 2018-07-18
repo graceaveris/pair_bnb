@@ -1,6 +1,30 @@
 <h1>CURRENT LISTINGS</h1>
 
 
+<!-- BOOTSTRAP FORM FOR FILTERING -->
+
+
+<%= form_with scope: :filter, url: filter_listings_path, local: true do |form| %>
+    <p>
+    <%= form.label :guests %><br>
+    <%= form.select :max_guest_number, (0..20) %>
+
+    <%= form.label :select_amenities %><br>
+    <%@amenities.each do |amen|%>
+        <%= form.label amen %>
+      <%= form.check_box :amenities, {multiple: true}, amen.to_s, nil %></br>
+      <% end %> 
+
+    <%= form.submit "Filter Results" %>
+  </p>
+  
+<% end %> 
+
+
+
+
+
+
 <div class="card-group">
 
   <% @listings.each do |listing| %>
@@ -17,8 +41,8 @@
 </div>
 
 
+
   <% end %></br>
   </div></br>
 
-
-  <%= will_paginate @posts %>
+<%= will_paginate @posts %>
