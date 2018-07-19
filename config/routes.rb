@@ -38,12 +38,12 @@ Rails.application.routes.draw do
 
   get "/listings/:id/edit" => "listings#edit", as: "edit_listing" #This serves the edit form for a listing
   
-  post "/listings/filter" => "listings#filter", as: "filter_listings"#This creates the listing upon submit of form
+  post "/listings/filter" => "listings#filter", as: "filter_listings"#serves index view via filter def
 
 
 #RESERVATIONS ROUTES
   
-resources :listings do
+  resources :listings do
   resources :reservations, only: [:index, :create, :new]
 end
 

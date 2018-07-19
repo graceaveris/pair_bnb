@@ -7,10 +7,8 @@ class Listing < ApplicationRecord
 	scope :max_guest_scope, -> (max_guest_number) { where("max_guest_number >= ? ", max_guest_number) }
     scope :city_scope, -> (city) { where city: city }
     scope :price_range_scope, -> (min_price, max_price) { where("price >= ? AND price <= ?", min_price, max_price) }
-
-
-
-    #OLD SCOPE FOR PROCE BRACKETS # scope :price_scope, -> (price.split(',')) { where(("price[0].to_i <= ?") && ("price[1].to_i >= ?"), price) }
+  
+    #OLD SCOPE FOR PRICE BRACKETS WHICH FAILED # scope :price_scope, -> (price.split(',')) { where(("price[0].to_i <= ?") && ("price[1].to_i >= ?"), price) }
 
 end
 

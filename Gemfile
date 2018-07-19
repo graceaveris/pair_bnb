@@ -3,6 +3,8 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.5.0'
 
+#For deployment
+gem 'rails_12factor'
 #for authorization
 gem "cancan"
 #for asynchronous background tasks, sucha as email

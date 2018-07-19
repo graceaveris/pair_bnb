@@ -8,13 +8,14 @@
     <%= form.select :guest_number, (0..20), {:prompt => "Guest Number"} %>
     <%= form.select(:city, ['Search All', 'London', 'New York', 'Los Angeles'], {:prompt => "Select City"})%>
     <%= form.label :Minimum_price_per_night%>
-    <%= form.number_field :min_price, :value => 0 %>
+    <%= form.number_field :min_price, :value => 0, :class => "filter-element"  %>
     <%= form.label :Maximum_price_per_night%>
-    <%= form.number_field :max_price, :value => 1000  %>
+    <%= form.number_field :max_price, :value => 1000, :class => "filter-element"    %>
 
     <%= form.submit "Filter Results" %>
   </p>
 <% end %> 
+
 
 <!-- DISPLAYS CURRENTLY SELECTED FIELDS IF @FILTERED VIEW -->
 
