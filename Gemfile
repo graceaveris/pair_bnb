@@ -4,7 +4,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '2.5.0'
 
 #For deployment
-gem 'rails_12factor'
+gem 'rails_12factor', group: :production
 #for authorization
 gem "cancan"
 #for asynchronous background tasks, sucha as email
