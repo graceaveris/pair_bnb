@@ -1,19 +1,42 @@
 <h1>CURRENT LISTINGS</h1>
 
 
-<!-- FORM FOR FILTERING -->
+<!-- INITIAL FORM FOR THOSE ENTERING THE PAGE FIRST -->
 
-<%= form_with scope: :filter, url: filter_listings_path, local: true do |form| %>
-    <p>
-    <%= form.select :guest_number, (0..20), {:prompt => "Guest Number"} %>
-    <%= form.select(:city, ['Search All', 'London', 'New York', 'Los Angeles'], {:prompt => "Select City"})%>
-    <%= form.label :Minimum_price_per_night%>
-    <%= form.number_field :min_price, :value => 0, :class => "filter-element"  %>
-    <%= form.label :Maximum_price_per_night%>
-    <%= form.number_field :max_price, :value => 1000, :class => "filter-element"    %>
+<% if @filtered == true %>
 
-    <%= form.submit "Filter Results" %>
-  </p>
+      <%= form_with scope: :filter, url: filter_listings_path, local: true do |form| %>
+          <p>
+          <%= form.select :guest_number, (0..20), :selected => @guests %>
+          <%= form.select(:city, ['Search All', 'London', 'New York', 'Los Angeles'], :selected => @city)%>
+          <%= form.label :Minimum_price_per_night%>
+          <%= form.number_field :min_price, :value => @min_price, :class => "filter-element"  %>
+          <%= form.label :Maximum_price_per_night%>
+          <%= form.number_field :max_price, :value => @max_price, :class => "filter-element"    %>
+
+          <%= form.submit "Filter Results" %>
+        </p>
+      <% end %> 
+
+<% else %> 
+
+
+
+<!--FORM IF ENTERING THE INDEX AFTER FILTERING-->
+
+      <%= form_with scope: :filter, url: filter_listings_path, local: true do |form| %>
+          <p>
+          <%= form.select :guest_number, (0..20), {:prompt => "Guest Number"} %>
+          <%= form.select(:city, ['Search All', 'London', 'New York', 'Los Angeles'], {:prompt => "Select City"})%>
+          <%= form.label :Minimum_price_per_night%>
+          <%= form.number_field :min_price, :value => 0, :class => "filter-element"  %>
+          <%= form.label :Maximum_price_per_night%>
+          <%= form.number_field :max_price, :value => 1000, :class => "filter-element"    %>
+
+          <%= form.submit "Filter Results" %>
+        </p>
+      <% end %> 
+
 <% end %> 
 
 

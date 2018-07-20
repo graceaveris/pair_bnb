@@ -13,6 +13,8 @@ class ListingsController < ApplicationController
         @filtered = true
         @city = params[:filter][:city]
         @guests = params[:filter][:guest_number]
+        @min_price = params[:filter][:min_price]
+        @max_price = params[:filter][:max_price]
         render 'index'
     end
 
