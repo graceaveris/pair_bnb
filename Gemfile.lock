@@ -124,6 +124,19 @@ GEM
       countries (~> 2.0)
       sort_alphabetical (~> 1.0)
     crass (1.0.4)
+    elasticsearch (5.0.5)
+      elasticsearch-api (= 5.0.5)
+      elasticsearch-transport (= 5.0.5)
+    elasticsearch-api (5.0.5)
+      multi_json
+    elasticsearch-model (5.1.0)
+      activesupport (> 3)
+      elasticsearch (~> 5)
+      hashie
+    elasticsearch-rails (5.1.0)
+    elasticsearch-transport (5.0.5)
+      faraday
+      multi_json
     email_validator (1.6.0)
       activemodel
     erubi (1.7.1)
@@ -335,6 +348,8 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   countries
   country_select
+  elasticsearch-model
+  elasticsearch-rails
   figaro
   fog-aws
   jbuilder (~> 2.5)
@@ -363,4 +378,4 @@ RUBY VERSION
    ruby 2.5.0p0
 
 BUNDLED WITH
-   1.16.2
+   1.16.3
